@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 
 function CIAAuth() {
     const [authenticated, setAuthenticated] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const authenticate = () => {
         // Implement CIA authentication logic here
-        setAuthenticated(true);
+        if (username === 'user' && password === 'password') {
+            setAuthenticated(true);
+        } else {
+            alert('Authentication failed');
+        }
     };
 
     return (
@@ -14,7 +20,21 @@ function CIAAuth() {
             {authenticated ? (
                 <p>Authenticated</p>
             ) : (
-                <button onClick={authenticate}>Login</button>
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button onClick={authenticate}>Login</button>
+                </div>
             )}
         </div>
     );
